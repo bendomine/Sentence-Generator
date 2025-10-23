@@ -128,20 +128,15 @@ const words = {
 
 function generate() {
 	let sentence = ['np', 'vp'];
-	let finished = false;
 
-	while (!finished) {
-		finished = true;
-		for (let i = 0; i < sentence.length; ++i) {
-			let options = rules[sentence[i]];
-			if (options) {
-				let index = Math.floor(Math.random() * options.length);
-				let rule = options[index];
-				sentence = insertRule(sentence, i, rule);
+	for (let i = 0; i < sentence.length; ++i) {
+		let options = rules[sentence[i]];
+		if (options) {
+			let index = Math.floor(Math.random() * options.length);
+			let rule = options[index];
+			sentence = insertRule(sentence, i, rule);
 
-				i--;
-				finished = false;
-			}
+			i--;
 		}
 	}
 	let output = replaceWords(sentence);
